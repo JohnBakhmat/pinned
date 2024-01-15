@@ -15,7 +15,7 @@ type Project struct {
 	Url         string
 	Stars       int
 	Forks       int
-	Language    []string
+	Languages   []string
 }
 
 func GetProjects(username string) ([]Project, error) {
@@ -44,6 +44,11 @@ func GetProjects(username string) ([]Project, error) {
 						URL            string
 						ForkCount      int
 						StargazerCount int
+						Languages      struct {
+							Nodes []struct {
+								Name string
+							}
+						} `graphql:"languages(first:2)"`
 					} `graphql:"... on Repository"`
 				}
 			} `graphql:"pinnedItems(first: 6, types: [REPOSITORY])"`
@@ -63,15 +68,33 @@ func GetProjects(username string) ([]Project, error) {
 	projects := []Project{}
 
 	for _, repo := range query.User.PinnedItems.Nodes {
+		languages := make([]string, 2)
+		for i, l := range repo.Repository.Languages.Nodes {
+			languages[i] = l.Name
+		}
+		filterEmptyStrings(&languages)
+
 		project := Project{
 			Name:        repo.Repository.Name,
 			Description: repo.Repository.Description,
 			Url:         repo.Repository.URL,
 			Forks:       repo.Repository.ForkCount,
 			Stars:       repo.Repository.StargazerCount,
+			Languages:   languages,
 		}
 		projects = append(projects, project)
 	}
 
 	return projects, nil
+}
+
+func filterEmptyStrings(s *[]string) {
+	i := 0
+	for _, str := range *s {
+		if str != "" {
+			(*s)[i] = str
+			i++
+		}
+	}
+	*s = (*s)[:i]
 }
