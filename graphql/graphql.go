@@ -48,7 +48,7 @@ func GetProjects(username string) ([]Project, error) {
 							Nodes []struct {
 								Name string
 							}
-						} `graphql:"languages(first:2)"`
+						} `graphql:"languages(first:5)"`
 					} `graphql:"... on Repository"`
 				}
 			} `graphql:"pinnedItems(first: 6, types: [REPOSITORY])"`
@@ -68,7 +68,7 @@ func GetProjects(username string) ([]Project, error) {
 	projects := []Project{}
 
 	for _, repo := range query.User.PinnedItems.Nodes {
-		languages := make([]string, 2)
+		languages := make([]string, len(query.User.PinnedItems.Nodes))
 		for i, l := range repo.Repository.Languages.Nodes {
 			languages[i] = l.Name
 		}
