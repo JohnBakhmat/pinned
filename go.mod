@@ -3,8 +3,12 @@ module johnbakhmat.tech/pinned
 go 1.21.6
 
 require (
+	github.com/gofiber/fiber/v3 v3.0.0-20240113152607-1588b6b60210
+	github.com/joho/godotenv v1.5.1
+)
+
+require (
 	github.com/andybalholm/brotli v1.1.0 // indirect
-	github.com/gofiber/fiber/v3 v3.0.0-20240113152607-1588b6b60210 // indirect
 	github.com/gofiber/utils/v2 v2.0.0-beta.3 // indirect
 	github.com/google/uuid v1.5.0 // indirect
 	github.com/klauspost/compress v1.17.4 // indirect
