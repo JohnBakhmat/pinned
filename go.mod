@@ -1,6 +1,6 @@
 module johnbakhmat.tech/pinned
 
-go 1.21.6
+go 1.21
 
 require (
 	github.com/Khan/genqlient v0.6.0
