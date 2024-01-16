@@ -8,15 +8,9 @@ import (
 
 	"github.com/gofiber/fiber/v3"
 	"johnbakhmat.tech/pinned/graphql"
-	"github.com/joho/godotenv"
 )
 
 func main() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
 	portStr := os.Getenv("PORT")
     if portStr == "" {
         portStr = "7000"
