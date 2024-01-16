@@ -1,16 +1,9 @@
-FROM golang:1.19 AS build
-WORKDIR /go/src/pinned
-COPY . .
+FROM golang:1.18-alpine
+WORKDIR /usr/src/app
+COPY go.mod ./
+COPY go.sum ./
 RUN go mod download
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o app .
-
-
-FROM alpine:latest as release
-WORKDIR /app
-COPY --from=build /go/src/pinned/app .
-RUN apk -U upgrade \
-    && apk add --no-cache dumb-init ca-certificates \
-    && chmod +x /app/app
-EXPOSE 3000
-
-ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+COPY . .
+RUN go build -o ./bin/pinned .
+EXPOSE 8080
+CMD [ "./bin/pinned" ]
