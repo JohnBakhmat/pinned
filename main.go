@@ -13,7 +13,7 @@ import (
 func main() {
 	portStr := os.Getenv("PORT")
     if portStr == "" {
-        portStr = "7000"
+        portStr = "8080"
     }
 
     port, err := strconv.Atoi(portStr)
@@ -26,7 +26,7 @@ func main() {
 	app.Get("/", func(c fiber.Ctx) error {
 		return c.SendStatus(200)
 	})
-	app.Get("/getProjects/:username", func(c fiber.Ctx) error {
+	app.Get("/projects/:username", func(c fiber.Ctx) error {
 		username := c.Params("username", "johnbakhmat")
 		projects, err := graphql.GetProjects(username)
 		if err != nil {
