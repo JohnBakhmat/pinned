@@ -14,7 +14,7 @@ import (
 func main() {
 	portStr := os.Getenv("PORT")
 	if portStr == "" {
-		portStr = "8080"
+		portStr = "80"
 	}
 
 	port, err := strconv.Atoi(portStr)

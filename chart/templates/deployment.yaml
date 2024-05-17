@@ -18,6 +18,12 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: "GITHUB_TOKEN"
+              valueFrom:
+                secretKeyRef:
+                  key: github_token
+                  name: {{.Release.Name }}-auth
           ports:
             - name: http
               containerPort: {{ .Values.service.app_port }}
