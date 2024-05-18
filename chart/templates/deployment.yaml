@@ -22,7 +22,7 @@ spec:
             - name: GITHUB_TOKEN
               valueFrom:
                 secretKeyRef:
-                  key: github-token
+                  key: githubToken
                   name: pinned-johnbakhmat-tech
           ports:
             - name: http
