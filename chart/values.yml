@@ -27,5 +27,5 @@ resources:
 devhosting:
   appname: ''
 
-secret:
+secrets:
   githubToken: 'asdf'
