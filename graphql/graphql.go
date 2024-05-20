@@ -20,7 +20,6 @@ type Project struct {
 
 func GetProjects(username string) ([]Project, error) {
 	key := os.Getenv("GITHUB_TOKEN")
-	fmt.Println(key);
 	if key == "" {
 		err := fmt.Errorf("must set GITHUB_TOKEN=<github token>")
 		return nil, err
