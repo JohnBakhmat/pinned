@@ -4,6 +4,7 @@ go 1.21
 
 require (
 	github.com/gofiber/fiber/v3 v3.0.0-20240113152607-1588b6b60210
+	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/shurcooL/githubv4 v0.0.0-20231126234147-1cffa1f02456
 	golang.org/x/oauth2 v0.16.0
 )

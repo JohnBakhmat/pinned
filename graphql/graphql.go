@@ -10,12 +10,12 @@ import (
 )
 
 type Project struct {
-	Name        string
-	Description string
-	Url         string
-	Stars       int
-	Forks       int
-	Languages   []string
+	Name        string   `json:"name"`
+	Description string   `json:"description"`
+	Url         string   `json:"url"`
+	Stars       int      `json:"stars"`
+	Forks       int      `json:"forks"`
+	Languages   []string `json:"languages"`
 }
 
 func GetProjects(username string) ([]Project, error) {
