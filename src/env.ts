@@ -3,7 +3,7 @@ import z from "zod";
 
 export const env = createEnv({
 	server: {
-		PORT: z.string().min(1).max(5).default("3000"),
+		PORT: z.string().min(1).max(5).default("80"),
 		GITHUB_TOKEN: z.string().min(1),
 	},
 	runtimeEnv: process.env,
