@@ -6,7 +6,7 @@ image:
 replicas: 3
 
 service:
-  app_port: 3000
+  app_port: 80
   host: pinned.johnbakhmat.dev
   ssl:
     enabled: true
