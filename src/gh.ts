@@ -1,5 +1,6 @@
 import { gql, request } from "graphql-request";
 import z from "zod";
+import { env } from "./env";
 
 export const getProjects = async (user: string) => {
 	const query = gql`
@@ -28,12 +29,13 @@ query {
 }
 	`;
 
+	console.dir(env);
 	const response = await request(
 		"https://api.github.com/graphql",
 		query,
 		undefined,
 		{
-			Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+			Authorization: `Bearer ${env.GITHUB_TOKEN}`,
 		},
 	);
 	// return response;

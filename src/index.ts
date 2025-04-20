@@ -19,3 +19,4 @@ Bun.serve({
 		return new Response("OK");
 	},
 });
+console.log("Server stated!");
