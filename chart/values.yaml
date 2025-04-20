@@ -1,0 +1,30 @@
+image:
+  repository: ghcr.io/johnbakhmat/pinned
+  pullPolicy: Always
+  tag: "main"
+
+replicas: 3
+
+service:
+  app_port: 3000
+  host: pinned.johnbakhmat.dev
+  ssl:
+    enabled: true
+    port: 443
+    issuer:
+      name: letsencrypt
+      kind: ClusterIssuer
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+# populated by the ArgoCD application
+devhosting:
+  appname: ''
+  secrets:
+    githubToken: ''
