@@ -29,7 +29,6 @@ query {
 }
 	`;
 
-	console.dir(env);
 	const response = await request(
 		"https://api.github.com/graphql",
 		query,
